@@ -1,0 +1,362 @@
+{
+	"info": {
+		"_postman_id": "34708f59-cda5-47ac-ab4c-5a06da261851",
+		"name": "md-note-app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17632364"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "Sign-up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"TestUser\",\n    \"email\": \"test@g.com\",\n    \"password\": \"testing\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"test@g.com\",\n    \"password\": \"testing\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "notes",
+			"item": [
+				{
+					"name": "uploadNoteFile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "noteFile",
+									"type": "file",
+									"src": "/home/asus/Documents/roadmap-projects/Task-Tracker/README.md"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/uploadNoteFile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"uploadNoteFile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "renderhtml",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzM5MTEwNDg4LCJleHAiOjE3MzkxMTQwODh9.9aTbW6RlVEZikUw0IHe9NxsoHZ6Q2G42IbUSxZ1b9Qk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "noteFile",
+									"type": "file",
+									"src": "/home/asus/Documents/roadmap-projects/Task-Tracker/README.md"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/renderHtml/25",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"renderHtml",
+								"25"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "checkGrammar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzM5MDgyMTQyLCJleHAiOjE3MzkwODU3NDJ9.7OJdz8IMVaX24RkPVhjTqdAI7UmwKN5mwk2xMUKtjtc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "noteFile",
+									"type": "file",
+									"src": "/home/asus/Documents/roadmap-projects/Task-Tracker/README.md"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/check-grammar/21",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"check-grammar",
+								"21"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteNote",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzM5MDc4NTIxLCJleHAiOjE3MzkwODIxMjF9.6TuBDWc3u-kJL3X2VP2um4Jn7Zggg9GbxJ_Cg2nCyX0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "noteFile",
+									"type": "file",
+									"src": "/home/asus/Documents/roadmap-projects/Task-Tracker/README.md"
+								}
+							]
+						},
+						"url": {
+							"raw": "7http://localhost:3000/notes/9",
+							"protocol": "7http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"notes",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save-note",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzM4ODU3Mjk5LCJleHAiOjE3Mzg4NjA4OTl9.o2AXt41AYDRkIJnOr3xMs3XRChWeqzgrqCHX4vd8veg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fileName\": \"\",\n    \"content\": \"# Task Tracker CLI Simple\\n Command Line Interface (CLI) Application to manage tasks. It allows us to add, update, delete, mark and list tasks directly from terminal in JSON file.\\n\\n## Features\\n- **Add Task:**- Add new tasks with ID and store it in `JSON` format.\\n- **Update Task:**- Update the description of an existing task With ID.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/saveNote",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"saveNote"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listall",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzM5MTEwNDg4LCJleHAiOjE3MzkxMTQwODh9.9aTbW6RlVEZikUw0IHe9NxsoHZ6Q2G42IbUSxZ1b9Qk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "markdownFile",
+									"type": "file",
+									"src": "/home/asus/Documents/roadmap-projects/Task-Tracker/README.md"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/listAll",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"listAll"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
