@@ -4,9 +4,11 @@ const path = require('path')
 const noteRouter = require('./routes/noteRouter')
 const sequelize = require('./config/db')
 const userRouter = require('./routes/userRouter')
+const cors = require("cors");
 
 require('dotenv').config();
 const app = express();
+app.use(cors());
 
 sequelize.sync()
         .then(() => console.log('Database synced'))

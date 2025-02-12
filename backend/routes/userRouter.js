@@ -7,18 +7,19 @@ const userRouter = express.Router()
 userRouter.post('/users/signup', async (req,res) => {
     try{
         const {name,email,password} = req.body;
-
-        const existingUser = await User.findOne({email})
+        const existingUser = await User.findOne({
+            where: { email: email }
+          });
 
         if(existingUser){
-            return res.status(400).json({message: "User email already exists!"})
+            return res.status(400).json({error: "User email already exists!"})
         }
 
         const salt = await bcrypt.genSalt(10);
         const hashPassword = await bcrypt.hash(password, salt);
 
         const user = await User.create({name,email,password: hashPassword});
-        console.log("User PW ===>",user.password)
+
 
         return res.status(201).json({message: "User is registered successfully "})
     }catch(err){
@@ -32,16 +33,16 @@ userRouter.post('/users/login', async(req,res) => {
 
         // Find Existing user by email
         const user = await User.findOne({
-            email
+            where: { email: email }
         });
         if(!user){
-            return res.status(400).json({message: "User is not found!"});
+            return res.status(400).json({error: "Invalid Credentials!"});
         }
 
         // Check Password 
         const validPw = await bcrypt.compare(password, user.password);
         if(!validPw) {
-            return res.status(400).json({message: "Invalid Credentials!"})
+            return res.status(400).json({error: "Invalid Credentials!"})
         }
 
         // Generate Token
