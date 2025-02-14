@@ -1,0 +1,15 @@
+.card {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.register-btn {
+    color: black;
+    background-color: lightseagreen;
+}
+
+.loginText {
+    color: lightseagreen;
+}
