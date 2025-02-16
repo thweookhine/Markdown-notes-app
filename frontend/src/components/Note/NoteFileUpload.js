@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { API_BASE_URL } from '../../constants/apiConstants';
 import './note.css';
+import { useNavigate } from 'react-router-dom';
 
 const NoteFileUpload = () => {
     const [file, setFile] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
+    const navigate = useNavigate()
 
     const onFileChange = (e) => {
         const selectedFile = e.target.files[0];
@@ -25,7 +27,7 @@ const NoteFileUpload = () => {
         formData.append('noteFile', file);
 
         try {
-            const res = await axios.post(`${API_BASE_URL}/uploadNoteFile`, formData, {
+            const res = await axios.post(`${API_BASE_URL}/notes/uploadNoteFile`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'Authorization': localStorage.getItem('login_access_token') 
@@ -33,10 +35,15 @@ const NoteFileUpload = () => {
             });
             alert(res.data.message)
             setErrorMessage('');
+            redirectToHome();
         } catch (err) {
             setErrorMessage('Error uploading file');
         }
     };
+
+    const redirectToHome = () => {  
+        navigate('/home');
+    }
 
     return (
         <div className="card col-12 col-lg-4 login-card mt-2 hv-center">
@@ -46,7 +53,7 @@ const NoteFileUpload = () => {
                     <input type="file" accept=".md" name='file' onChange={onFileChange} className="form-control-file" required />
                 </div>
                 <div className="form-group">
-                    <button type="submit" className="btn upload-btn mt-3">Upload</button>
+                    <button type="submit" className="btn btn-primary mt-3">Upload</button>
                 </div>
             </form>
             <div className="mt-3">

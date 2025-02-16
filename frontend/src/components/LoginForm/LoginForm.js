@@ -29,7 +29,7 @@ const LoginForm = (props) => {
             const response =  await axios.post(`${API_BASE_URL}/users/login`, payload);
             localStorage.setItem(ACCESS_TOKEN_NAME, response.data.token);
             alert("Login successful!");
-            redirectToHome();
+            navigate('/home')
             setErrorMessage(""); // Clear errors on success
         } catch (error) {
             console.log(error);
@@ -39,10 +39,6 @@ const LoginForm = (props) => {
                 setErrorMessage("Network error. Please try again.");
             }
         }
-    }
-
-    const redirectToHome = () => {
-        navigate('/home');
     }
 
     const redirectToRegister = () => {

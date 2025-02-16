@@ -26,7 +26,7 @@ getFilePath = (fileName) => {
   return path.join(__dirname, '../notes', fileName);
 }
 
-noteRouter.post('/uploadNoteFile', authenticateUser, upload.single('noteFile'), async (req,res) => {
+noteRouter.post('/notes/uploadNoteFile', authenticateUser, upload.single('noteFile'), async (req,res) => {
     if(!req.file){
         return res.status(400).json({error: "Please Upload One File!"})
     }
@@ -52,7 +52,7 @@ noteRouter.post('/uploadNoteFile', authenticateUser, upload.single('noteFile'), 
 
 })
 
-noteRouter.post('/saveNote', authenticateUser,async(req,res) => {
+noteRouter.post('/notes/saveNote', authenticateUser,async(req,res) => {
   let {fileName, content} = req.body;
 
   if(!content){
@@ -89,12 +89,12 @@ noteRouter.post('/saveNote', authenticateUser,async(req,res) => {
     })
   } catch (err) {
     // Handle any errors
-    return res.status(500).send('Error creating note');
+    return res.status(500).json({ error: "Error creating note" });
   }
 
 })
 
-noteRouter.get('/renderHtml/:noteId', authenticateUser, async(req,res) => {
+noteRouter.get('/notes/renderHtml/:noteId', authenticateUser, async(req,res) => {
   try{
     const noteId = req.params.noteId
 
@@ -125,7 +125,7 @@ noteRouter.get('/renderHtml/:noteId', authenticateUser, async(req,res) => {
   }
 })
 
-noteRouter.post('/check-grammar/:noteId', authenticateUser, async (req, res) => {
+noteRouter.get('/notes/check-grammar/:noteId', authenticateUser, async (req, res) => {
   try {
     const noteId = req.params.noteId;
 
@@ -216,7 +216,7 @@ noteRouter.delete('/notes/:noteId', authenticateUser, async(req,res) => {
   
 })
 
-noteRouter.get('/listAll', authenticateUser, async(req,res) => {
+noteRouter.get('/notes/listByUser', authenticateUser, async(req,res) => {
     const notes = await Note.findAll({
       userId: req.user.id
     })

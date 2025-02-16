@@ -4,8 +4,12 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
-
-.upload-btn {
+.btn-lightseagreen {
     color: black;
     background-color: lightseagreen;
+}
+
+.btn-lightseagreen:hover {
+    color: lightseagreen;
+    background-color: white;
 }
