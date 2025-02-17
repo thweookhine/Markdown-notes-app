@@ -36,7 +36,11 @@ docker exec -it postgres-container psql -U postgres
 git clone https://github.com/thweookhine/Markdown-notes-app.git
 
 # Navigate to the project Directory
+#For Running api 
 cd Markdown-notes-app/backend
+#For Running Frontend
+cd Markdown-notes-app/frontend
+
 ```
 **Install Dependencies**
 ```bash
@@ -45,6 +49,10 @@ npm install
 **Run Server**
 ```bash
 node index.js
+```
+**Run React**
+```bash
+npm run start
 ```
 
 **Open your postman and import my collection**
